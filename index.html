@@ -6,44 +6,40 @@
     <title>Gymnasium Benešov</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+              font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding-top: 60%;
-            color: #333;
             padding: 0;
+            color: #333;
             overflow-x: hidden;
         }
         
         header {
-            background: #6d4c41;
+             background: #6d4c41;
             color: white;
             text-align: center;
-            padding: 1%;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            position: fixed;
             width: 100%;
             top: 0;
             left: 0;
-            white-space: nowrap;
             z-index: 1000;
-            padding: 2%;
+            padding: 1.5% 0;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
         .logo {
             position: absolute;
             left: 5%;
-            width: auto;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .logo img {
-            height: 60px;
-            max-height: 100px;
+          height: min(8vh, 12vw); /* Dynamické škálování */
+            max-height: 80px;
+            width: auto;
         }
         .navbar {
             position: sticky;
@@ -51,7 +47,6 @@
             left: 0;
             width: 100%;
             background: #8d6e63;
-            
             text-align: center;
             display: flex;
             align-items: center;
@@ -88,7 +83,6 @@
         .nav-links a.active {
             background: #5d4037; 
             color:white;
-            font-weight: bold;
         }
 
         .nav-links a:hover {
@@ -160,6 +154,7 @@
             background-size: cover;
             background-position: center;
             color: #5d4037;
+            margin-top: 80px;
             
         }
         .banner img {
@@ -196,14 +191,7 @@
             padding-top: 20px; 
         }
         .flag {
-            height: 25px; 
-            width: auto;
-            position: absolute;
-            right: 50px;
-            top: 50%;
-            transform: translateY(-50%);  
-            height: 25px;
-            margin-left: auto;
+                       height: 25px;
         }
         .menu-toggle {
             display: none;
@@ -232,13 +220,11 @@
                 display: block;
             }
                 .logo {
-        position: relative;
-        left: auto;
-        top: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 50px; 
+       left: auto;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: 50px;
 
     .logo img {
         height: 50px; /* Snížení velikosti loga */
