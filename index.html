@@ -231,6 +231,35 @@
             .menu-toggle {
                 display: block;
             }
+                .logo {
+        position: relative;
+        left: auto;
+        top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px; 
+
+    .logo img {
+        height: 50px; /* Snížení velikosti loga */
+        max-height: 80px;
+    }
+                    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .banner {
+        margin-top: 80px; /* Posunutí obrázku dolů */
+    }
+
+    .banner img {
+        height: auto;
+        max-height: 300px;
+    }
         }
         @media screen and (max-width: 768px) {
     .logo img {
