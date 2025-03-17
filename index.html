@@ -4,18 +4,19 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gymnasium Benešov</title>
-    <style>
+    
+  <style>
         body {
-              font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
             color: #333;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Odstranění mezery vpravo */
         }
         
         header {
-             background: #6d4c41;
+            background: #6d4c41;
             color: white;
             text-align: center;
             display: flex;
@@ -29,6 +30,7 @@
             padding: 1.5% 0;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
+
         .logo {
             position: absolute;
             left: 5%;
@@ -36,11 +38,13 @@
             align-items: center;
             justify-content: center;
         }
+
         .logo img {
-          height: min(8vh, 12vw); /* Dynamické škálování */
+            height: min(8vh, 12vw); /* Dynamické škálování */
             max-height: 80px;
             width: auto;
         }
+
         .navbar {
             position: sticky;
             top: 0;
@@ -54,10 +58,7 @@
             z-index: 999;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .hidden {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
+
         .nav-links {
             list-style: none;
             padding: 0;
@@ -80,9 +81,10 @@
             transition: all 0.3s;
             border-radius: 5px;
         }
+
         .nav-links a.active {
-            background: #5d4037; 
-            color:white;
+            background: #5d4037;
+            color: white;
         }
 
         .nav-links a:hover {
@@ -90,62 +92,6 @@
             transform: scale(1.1);
         }
         
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #8d6e63;
-            padding: 10px;
-            margin-bottom: 40px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-        }
-        .search-container input {
-            padding: 8px;
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .search-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-        .search-button img {
-            
-            margin-right: 20px;
-            width: 24px;
-            height: 24px;
-            object-fit: cover;
-            background: none;
-        }
-        .sections {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-        .section {
-            background: white;
-            padding: 20px;
-            width: 30%;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            text-align: center;
-            background: #6d4c41;
-            color: white;
-            padding: 10px;
-            margin-top: 20px;
-        }
         .banner {
             height: 300px;
             display: flex;
@@ -154,45 +100,29 @@
             background-size: cover;
             background-position: center;
             color: #5d4037;
-            margin-top: 80px;
-            
+            margin-top: 80px; /* Posunutí obrázku dolů */
         }
+
         .banner img {
             width: 100%;
             height: 400px;
             object-fit: cover;
         }
-        p {
-            margin-left: 10%;
-            margin-right: 10%;
-            font-size: large;
-        }
-        h2 {
+
+        p, h2, main h1 {
             margin-left: 10%;
             margin-right: 10%;
         }
-        main h1 {
-            margin-top: 70px;
-            margin-left: 10%;
-            margin-right: 10%;
-        }
-        #search {
-            display: none; 
-            padding: 8px;
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            outline: none;
-        }.search-container.active #search {
-            display: inline-block; 
-        }
-        .content {
-            padding-top: 20px; 
-        }
+
         .flag {
-                       height: 25px;
+            height: 25px;
+            width: auto;
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
         }
+
         .menu-toggle {
             display: none;
             background: none;
@@ -201,6 +131,7 @@
             font-size: 24px;
             color: white;
         }
+
         @media screen and (max-width: 1024px) {
             .nav-links {
                 display: none;
@@ -213,62 +144,59 @@
                 padding: 10px 0;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
+
             .nav-links.active {
                 display: flex;
             }
+
             .menu-toggle {
                 display: block;
             }
-                .logo {
-       left: auto;
+
+            .logo {
+                left: auto;
                 position: relative;
                 display: flex;
                 justify-content: center;
                 height: 50px;
+            }
 
-    .logo img {
-        height: 50px; /* Snížení velikosti loga */
-        max-height: 80px;
-    }
-                    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-    }
+            .logo img {
+                height: 50px;
+                max-height: 80px;
+            }
 
-    .banner {
-        margin-top: 80px; /* Posunutí obrázku dolů */
-    }
-
-    .banner img {
-        height: auto;
-        max-height: 300px;
-    }
+            .banner img {
+                height: auto;
+                max-height: 300px;
+            }
         }
+
         @media screen and (max-width: 768px) {
-    .logo img {
-        height: 40px;
-    }
+            .logo img {
+                height: 40px;
+            }
 
-    .flag {
-        right: 10px;
-        height: 20px;
-    }
-             .sections {
-        flex-direction: column;
-        align-items: center;
-    }
+            .flag {
+                right: 10px;
+                height: 20px;
+            }
 
-    .section {
-        width: 80%; 
-        margin-bottom: 20px;
-    }
-}
+            .sections {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+
         .footer2 p, hr {
             font-size: 75%;
         }
+
         .footer3 {
             margin-left: 25%;
             margin-right: 25%;
