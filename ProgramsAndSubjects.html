@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gymnasium Benešov</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding-top: 60px;
+            color: #333;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: #6d4c41;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .logo {
+            position: absolute;
+            left: 5%;
+            width: auto;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: none;
+        }
+
+        .logo img {
+            height: 60px;
+            max-height: 100px;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #8d6e63;
+            padding: 10px ;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            
+
+        }
+        .hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            display: inline-block;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+        .nav-links a.active {
+            background: #5d4037; 
+            color:white;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            background: #5d4037;
+            transform: scale(1.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #8d6e63;
+            padding: 10px;
+            margin-bottom: 40px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .search-container input {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .search-button img {
+            
+            margin-right: 20px;
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+            background: none;
+        }
+        .sections {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            background: #6d4c41;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .banner {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            color: #5d4037;
+            font-size: 24px;
+        }
+        .banner img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        p  {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        h2 {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        h3 {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        main h1 {
+            margin-top: 70px;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        #search {
+            display: none; 
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }.search-container.active #search {
+            display: inline-block; 
+        }
+        .content {
+            padding-top: 20px; 
+        }
+        .flag {
+            height: 25px; 
+            width: auto;
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);  
+            height: 25px;
+            margin-left: auto;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+        }
+        @media screen and (max-width: 1024px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #8d6e63;
+                padding: 10px 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            border: 2px solid black;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #353c38;
+            color: white;
+        }
+        .footer2 p, hr {
+            font-size: 75%;
+        }
+        .footer3 {
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+            <img src="logoGBN3.jpg" alt="Logo GBN"class="logo">
+            </a>
+        </div>
+        <h1>Gymnázium Benešov</h1>
+        <a href="https://www.gbn.cz/%C3%BAvod" class="flag-link" target="_blank">
+            <img src="vlajka.jpg" alt="Vlajka" class="flag">
+        </a> 
+
+    </header>
+   
+    <nav class="navbar">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="CompetitionsAndActivities.html">Competitions</a></li>
+            <li><a href="History.html">History</a></li>
+            <li><a href="FurtherInformation.html">Further Information</a></li>
+            <li><a href="ExcursionsAndCourses.html">Excursions</a></li>
+            <li><a href="InternationalPrograms.html">International Programs</a></li>
+            <li><a href="ProgramsAndSubjects.html">Programs & Subjects</a></li>
+            <li><a href="AdmissionProcess.html">Admission</a></li>
+            <li><a href="Contacts.html">Contacts</a></li>
+        </ul>
+        
+        <div class="search-container">
+        <input type="text" id="search" placeholder="Hledat..." onkeyup="searchFunction()">
+        <button class="search-button">
+            <img src="searchicon.png" alt="Hledat">
+         </button>
+        </div>
+    </nav>
+
+        <hr>
+        <div class="banner">
+            <img src="budova.jpg">
+            
+        </div>
+        <main>
+        <h1>Types of Study Programs and Subjects:
+        </h1>
+    <h2>Four-year program (code) – 79-41-K/41</h2>
+      <p><b>Education category:</b> Four-year gymnasium preparation, after completing the 9th grade of elementary school
+        <br><b>Field group:</b> General education (Gymnasium)
+        <br><b>Final certificate:</b> School-leaving certificate 
+        </p>
+        <h3>Curriculum</h3>
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>1st</th><th>2nd</th><th>3rd</th><th>4th</th>
+            </tr>
+            <tr><td>Czech Language(1)</td><td>4</td><td>3</td><td>4</td><td>4</td></tr>
+            <tr><td>Foreign Language 1(2)</td><td>4</td><td>3</td><td>3</td><td>4</td></tr>
+            <tr><td>Foreign Language 2(2)</td><td>4</td><td>4</td><td>3</td><td>3</td></tr>
+            <tr><td>Mathematics(1)</td><td>4</td><td>4</td><td>4</td><td>3</td></tr>
+            <tr><td>Social Studies(3)</td><td>1</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr><td>History</td><td>1</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr><td>Geography</td><td>2</td><td>2</td><td>2</td><td>-</td></tr>
+            <tr><td>Physics(8)</td><td>2</td><td>2</td><td>2</td><td>1</td></tr>
+            <tr><td>Chemistry</td><td>2</td><td>2</td><td>2</td><td>-</td></tr>
+            <tr><td>Biology(3,8)</td><td>2</td><td>2</td><td>2</td><td>1</td></tr>
+            <tr><td>Informatics & Technology(3)</td><td>2</td><td>2</td><td>-</td><td>-</td></tr>
+            <tr><td>Physical Education(5,3)</td><td>2</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr><td>Aesthetic Education(6)</td><td>2</td><td>2</td><td>-</td><td>-</td></tr>
+            <tr><td>Natural Science Exercises(4)</td><td>2</td><td>2</td><td>2</td><td>-</td></tr>
+            <tr><td>Elective Subject 1</td><td>-</td><td>-</td><td>2</td><td>2</td></tr>
+            <tr><td>Elective Subject 2</td><td>-</td><td>-</td><td>2</td><td>2</td></tr>
+            <tr><td>Elective Subject 3</td><td>-</td><td>-</td><td>-</td><td>2</td></tr>
+            <tr><td>Elective Subject 4</td><td>-</td><td>-</td><td>-</td><td>2</td></tr>
+            <tr><td><strong>Total Weekly Hours</strong></td><td><strong>34</strong></td><td><strong>34</strong></td><td><strong>34</strong></td><td><strong>30</strong></td></tr>
+        </table>
+        <p><strong>Notes:</strong></p>
+       <p>  1) The class is split into two groups for one lesson.<br>
+            2) The class is split into two groups for all lessons.<br>
+            3) The curriculum includes content from the educational area "Human and Health."<br>
+            4) The class is split into three groups for all lessons.<br>
+            5) The class is divided into groups for all lessons, with the number of groups determined by the number of boys and girls in the class.<br>
+            6) Music or Art education, the class is split into two groups for all lessons.<br>
+            7) The curriculum includes content from the educational area "Human and Work World."<br>
+            8) The subject is taught only in one semester of the 4th grade, for 2 hours per week.<br>
+    </p>
+        <h2>Eight-year program (code) – 79-41-K/81</h2>
+        <p> <b>Education category:</b> Eight-year gymnasium preparation, after completing the 5th grade of elementary school
+            <br><b> Field group:</b> General education (Gymnasium)
+            <br><b>Final certificate:</b> School-leaving certificate
+            </p>
+        <h3>Curriculum</h3>
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>1st</th><th>2nd</th><th>3rd</th><th>4th</th>
+                <th>5th</th><th>6th</th><th>7th</th><th>8th</th>
+            </tr>
+            <tr><td>Czech Language(1)</td><td>5</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>4</td><td>4</td></tr>
+            <tr><td>Foreign Language 1(2)</td><td>3</td><td>4</td><td>3</td><td>4</td><td>4</td><td>3</td><td>3</td><td>4</td></tr>
+            <tr><td>Foreign Language 2(2)</td><td>-</td><td>-</td><td>3</td><td>3</td><td>4</td><td>4</td><td>3</td><td>3</td></tr>
+            <tr><td>Mathematics(1)</td><td>5</td><td>4</td><td>5</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td></tr>
+            <tr><td>Social Studies(7)</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr><td>History</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr><td>Geography</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>-</td></tr>
+            <tr><td>Physics(8)</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td></tr>
+            <tr><td>Chemistry(8)</td><td>-</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>-</td></tr>
+            <tr><td>Biology(3,8)</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td></tr>
+            <tr><td>Informatics & Technology(4,5)</td><td>1</td><td>1</td><td>1</td><td>1</td><td>2</td><td>2</td><td>-</td><td>-</td></tr>
+            <tr><td>Physical Education(3,2)</td><td>3</td><td>2</td><td>2</td><td>3</td><td>2</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr><td>Aesthetic Education(6)</td><td>3</td><td>3</td><td>2</td><td>2</td><td>2</td><td>2</td><td>-</td><td>-</td></tr>
+            <tr><td>Natural Science Exercises(6)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>2</td><td>2</td><td>-</td></tr>
+            <tr><td>Elective Subject 1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>2</td></tr>
+            <tr><td>Elective Subject 2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>2</td></tr>
+            <tr><td>Elective Subject 3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td></tr>
+            <tr><td>Elective Subject 4</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td></tr>
+            <tr><td>Total Weekly Hours</td><td>30</td><td>29</td><td>31</td><td>32</td><td>34</td><td>34</td><td>34</td><td>30</td></tr>
+        </table>
+        <p><strong>Notes:</strong></p>
+        <p>1) The class is split into two groups for one lesson.<br>
+           2) The class is split into two groups for all lessons.<br>
+           3) Includes content from the subject "Human and Health."<br>
+           4) Includes content from "Human and Work World" - Digital Technology Usage.<br>
+           5) The class is split into groups for all lessons.<br>
+           6) Music and Art education, class is split into two groups for all lessons.<br>
+           7) The subject is taught in the 8th grade for only one semester, 2 hours per week.<br>
+           8) Includes content from the subject "Human and Work World" - Laboratory Techniques.<br>
+        </p>
+       <h2>Elective subjects </h2>
+       <table>
+        <thead>
+            <tr>
+                <th>1-Year</th>
+                <th>2-Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Modern Literature</td><td>Literary Seminar</td></tr>
+            <tr><td>Linguistics Seminar (JS)</td><td>Social Science Seminar</td></tr>
+            <tr><td>Literary Seminar – B2 (LiAj B2)</td><td>History Seminar</td></tr>
+            <tr><td>Conversation Seminar (KA B1)</td><td>Grammar and Conversation Seminar (GrKa B1)</td></tr>
+            <tr><td>Conversation Seminar (KA B2)</td><td>Conversation Seminar (KA B1)</td></tr>
+            <tr><td>Cambridge Exam Preparation (CA)</td><td>Conversation Seminar (KA B2)</td></tr>
+            <tr><td>Russian Conversation</td><td>Cambridge Exam Preparation Seminar (CA2)</td></tr>
+            <tr><td>German Conversation</td><td>German Conversation</td></tr>
+            <tr><td>French Conversation</td><td>Russian Conversation</td></tr>
+            <tr><td>Social Science Seminar</td><td>French Conversation</td></tr>
+            <tr><td>Psychology and Sociology Seminar (PS)</td><td>Spanish Conversation</td></tr>
+            <tr><td>History Seminar</td><td>Selected Topics in Mathematics</td></tr>
+            <tr><td>20th Century History</td><td>Selected Topics in Physics</td></tr>
+            <tr><td>Geography Seminar</td><td>Selected Topics in Biology</td></tr>
+            <tr><td>Financial Mathematics</td><td>Chemistry Seminar SC</td></tr>
+            <tr><td>Mathematics Seminar and Exercises</td><td>Two-Year IT Seminar</td></tr>
+            <tr><td>Descriptive Geometry</td><td></td></tr>
+            <tr><td>Human Body (HB)</td><td></td></tr>
+            <tr><td>Physics with Computers</td><td></td></tr>
+            <tr><td>Physics Seminar and Exercises</td><td></td></tr>
+            <tr><td>One-Year IT Seminar</td><td></td></tr>
+        </tbody>
+    </table>
+
+ 
+    <h2>Characteristics of Two-Year Elective Subjects</h2>
+    
+    <h3>Literary Seminar (Two-Year)</h3>
+    <p>A seminar for 3rd and 4th-year students that enhances reading skills and deepens literary knowledge, aiding in both the school-leaving exam and university entrance exams. It covers literary theory, history, and criticism, linking literature with history, art, and philosophy while improving students' stylistic skills.</p>
+    
+    <h3>Grammar and Conversation Seminar (GrKa B1)</h3>
+    <p>Designed for students at A2/B1 level, focusing on English grammar from basics to B2 level and its practical use. It includes conversations about British culture, idioms, and preparation for the English school-leaving exam.</p>
+    
+    <h3>Conversation Seminar (KA B1)</h3>
+    <p>A B1-level seminar expanding vocabulary and phrases on topics such as family, hobbies, sports, travel, traditions, the environment, and employment. It uses materials like English Vocabulary in Use (Intermediate) and British Culture (Intermediate).</p>
+    
+    <h3>Conversation Seminar (KA B2)</h3>
+    <p>Intended for B2-level students, covering conversation topics such as non-traditional families, extreme sports, health, travel, crime, and employment. Materials include Taboos and Issues, English Vocabulary in Use (Upper-intermediate), and Global Issues.</p>
+    
+    <h3>Cambridge Exam Preparation Seminar (CA2)</h3>
+    <p>For students with at least B1 (FCE) or B2 (CAE) level, offering exam practice, including mock tests. It uses materials like FCE/CAE Trainer, FCE Games and Activities, and Advanced Skills.</p>
+    
+    <h3>Conversation in German</h3>
+    <p>A B1-level seminar for students in their 3rd or 7th year, preparing them for the German school-leaving exam and university entrance exams. It focuses on speaking skills, practical communication, and real-life situations, covering topics like family, education, traditions, health, work, and the environment.</p>
+    
+    <h3>Conversation in Russian</h3>
+    <p>A seminar for students planning to take the Russian school-leaving exam or study the language at university. It includes practicing exam topics, listening, reading, vocabulary building, and learning about Russian geography, literature, culture, and science.</p>
+    
+    <h3>Conversation in French</h3>
+    <p>This seminar enhances oral skills and expands knowledge of France and francophone countries, comparing them with the Czech Republic. Topics include geography, history, literature, culture, and daily life. It is ideal for students preparing for the school-leaving exam or university studies in French.</p>
+    
+    <h3>Conversation in Spanish</h3>
+    <p>For students preparing for the Spanish final exam (state and school) or DELE/SIELE, with an A2/B1 level required. It focuses on speaking, listening, reading, grammar review, and cultural topics, using authentic materials and online resources.</p>
+    
+    <h3>Social Science Seminar (Two-Year)</h3>
+    <p>Prepares students for the school-leaving exam and university entrance exams in social sciences. It covers political, economic, ethical, and international issues, fostering discussion and critical thinking about current events.</p>
+    
+    <h3>History Seminar (Two-Year)</h3>
+    <p>For 3rd-year students interested in history and humanities (law, teaching, etc.). It teaches academic writing, source analysis, and historical research while covering human history up to the 18th century, emphasizing connections to modern society and current events.</p>
+    
+    <h2>Characteristics of One-Year Elective Subjects</h2>
+    
+    <h3>Modern Literature (One-Year Seminar)</h3>
+    <p>This seminar is designed for 4th-year students, focused on enhancing reading and literary skills. Students are introduced to various literary movements and authors of the 20th and 21st centuries, improving their literary analysis and preparing for the school-leaving exams. The seminar fosters critical thinking and text interpretation across different genres.</p>
+    
+    <h3>Linguistics Seminar JS</h3>
+    <p>A seminar focused on deepening students' linguistic knowledge before the school-leaving exams. It expands language skills and prepares students for the challenging tasks of the Czech language exam.</p>
+    
+    <h3>Conversational Seminar – One-Year (KA B1)</h3>
+    <p>A seminar for students with B1+ proficiency, focusing on expanding vocabulary and phrases in everyday conversational topics such as family, sports, and travel. The goal is to improve fluency and confidence in communication in a foreign language.</p>
+    
+    <h3>Conversational Seminar – One-Year (KA B2)</h3>
+    <p>A seminar for students with B2 proficiency, focusing on expanding vocabulary in more complex topics such as crime, environmental issues, and contemporary social concerns. It helps students develop their ability to discuss and argue in English.</p>
+    
+    <h3>Literary Seminar – B2 (LiAj B2)</h3>
+    <p>A seminar for students interested in British literature. Students read and discuss texts from Anglo-Saxon literature through modernism to contemporary British literature. The aim is to expand cultural awareness and critical reading skills.</p>
+    
+    <h3>Preparation for Cambridge Exams – One-Year (CA)</h3>
+    <p>A seminar preparing students for Cambridge exams (FCE and CAE), focusing on all parts of the exam: writing, reading, listening, and speaking. Students learn techniques to successfully handle all exercises.</p>
+    
+    <h3>German Conversation</h3>
+    <p>A seminar for students who would like to improve their conversational skills in German, focusing on everyday situations and preparation for the school-leaving exam. It helps students develop the ability to respond in real communication situations.</p>
+    
+    <h3>Russian Conversation</h3>
+    <p>This seminar focuses on preparing for the Russian language school-leaving exam, practicing the required topics, and deepening knowledge about Russia's realia (geography, literature, culture, science, and technology). It includes exercises with listening materials, texts, images, and vocabulary training.</p>
+    
+    <h3>French Conversation</h3>
+    <p>A seminar aimed at improving oral communication skills and expanding knowledge of France and Francophone countries, with comparisons to the Czech Republic. Topics such as geography, history, literature, culture, and political systems will be discussed.</p>
+    
+</main>
+<footer class="footer2">
+    <p> <br><b>Contact Information</b>
+        <br>Gymnázium, Benešov, Husova 470, 256 01 Benešov
+        <br>Phone: 311444611, 311444612
+        <br>E-mail: gymnazium@gbn.cz
+        <br>Data box: 3bmx7xh
+        <br>Account number: 475260287/0100
+        <br>Student payment account: 115-3224780257/0100
+        <br>Company ID (IČ): 61664707
+        <br>Institution ID (IZO): 061664707
+        <br>RED IZO: 600006671
+    </p>
+        <hr>
+      <p class="footer3"> All texts, photographs, and other graphic elements on this website are protected under copyright law and are the property of their respective owners and Pixabay. Please comply with copyright law when using the content of this website.
+        <br>©  Gymnázium Benešov
+    </p>
+</footer>
+        <script> 
+        document.addEventListener("DOMContentLoaded", function () {
+    let searchContainer = document.querySelector(".search-container");
+    let searchButton = document.querySelector(".search-button");
+    let searchInput = document.getElementById("search");
+
+    searchButton.addEventListener("click", function (event) {
+        event.stopPropagation(); 
+        searchContainer.classList.toggle("active");
+        searchInput.focus();
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!searchContainer.contains(event.target) && event.target !== searchButton) {
+            searchContainer.classList.remove("active");
+        }
+    });
+
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchFunction();
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelector(".nav-links");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const links = document.querySelectorAll(".nav-links a");
+    const currentUrl = window.location.pathname.split("/").pop();
+
+    
+    links.forEach(link => {
+        if (link.getAttribute("href") === currentUrl) {
+            link.classList.add("active");
+        }
+    });
+
+   
+    function toggleMenu() {
+        navLinks.classList.toggle("active");
+    }
+
+    menuToggle.addEventListener("click", function (event) {
+        toggleMenu();
+        event.stopPropagation(); 
+    });
+
+  
+    document.addEventListener("click", function (event) {
+        if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+            navLinks.classList.remove("active");
+        }
+    });
+});
+        </script>
+    </body>
+</html>

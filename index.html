@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gymnasium Benešov</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding-top: 60%;
+            color: #333;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: #6d4c41;
+            color: white;
+            text-align: center;
+            padding: 1%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            top: 0;
+            left: 0;
+            white-space: nowrap;
+            z-index: 1000;
+            padding: 2%;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .logo {
+            position: absolute;
+            left: 5%;
+            width: auto;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: none;
+        }
+        .logo img {
+            height: 60px;
+            max-height: 100px;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #8d6e63;
+            padding: 1% ;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            display: inline-block;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+        .nav-links a.active {
+            background: #5d4037; 
+            color:white;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            background: #5d4037;
+            transform: scale(1.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #8d6e63;
+            padding: 10px;
+            margin-bottom: 40px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .search-container input {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .search-button img {
+            
+            margin-right: 20px;
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+            background: none;
+        }
+        .sections {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            background: #6d4c41;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .banner {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            color: #5d4037;
+            font-size: 24px;
+        }
+        .banner img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        p {
+            margin-left: 10%;
+            margin-right: 10%;
+            font-size: large;
+        }
+        h2 {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        main h1 {
+            margin-top: 70px;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        #search {
+            display: none; 
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }.search-container.active #search {
+            display: inline-block; 
+        }
+        .content {
+            padding-top: 20px; 
+        }
+        .flag {
+            height: 25px; 
+            width: auto;
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);  
+            height: 25px;
+            margin-left: auto;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+        }
+        @media screen and (max-width: 1024px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #8d6e63;
+                padding: 10px 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        .footer2 p, hr {
+            font-size: 75%;
+        }
+        .footer3 {
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+            <img src="logoGBN3.jpg" alt="Logo GBN"class="logo">
+            </a>
+        </div>
+        <h1>Gymnázium Benešov</h1>
+        <a href="https://www.gbn.cz/%C3%BAvod" class="flag-link" target="_blank">
+            <img src="vlajka.jpg" alt="Vlajka" class="flag">
+        </a> 
+
+    </header>
+   
+    <nav class="navbar">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="CompetitionsAndActivities.html">Competitions</a></li>
+            <li><a href="History.html">History</a></li>
+            <li><a href="FurtherInformation.html">Further Information</a></li>
+            <li><a href="ExcursionsAndCourses.html">Excursions</a></li>
+            <li><a href="InternationalPrograms.html">International Programs</a></li>
+            <li><a href="ProgramsAndSubjects.html">Programs & Subjects</a></li>
+            <li><a href="AdmissionProcess.html">Admission</a></li>
+            <li><a href="Contacts.html">Contacts</a></li>
+        </ul>
+        
+        <div class="search-container">
+        <input type="text" id="search" placeholder="Hledat..." onkeyup="searchFunction()">
+        <button class="search-button">
+            <img src="searchicon.png" alt="Hledat">
+         </button>
+        </div>
+    </nav>
+
+        <hr>
+        <div class="banner">
+            <img src="budova.jpg">
+            
+        </div>
+        <div class="container">
+            <div class="sections">
+                <div class="section">
+                    <h2>Feelings of graduates</h2>
+                    <p>Short stories about our school.(<a href="FurtherInformation.html">Link</a>)</p>
+                </div>
+                <div class="section">
+                    <h2>Interesting past</h2>
+                    <p>History and notable alumni.(<a href="History.html">Link</a>)</p>
+                </div>
+                <div class="section">
+                    <h2>International programs</h2>
+                    <p>Partner schools and exchange program.(<a href="InternationalPrograms.html">Link</a>)</p>
+                </div>
+            </div>
+        </div>
+        <h2>Basic information</h2>
+        <p>
+            <br> <b>Name:</b> Gymnázium Benešov, a contributory organization of the Central Bohemian Region  
+            <br> <b>Address:</b> Husova 470, 256 01 Benešov  
+            <br> <b>Identification details:</b> Company ID: 061 664 707, ID: 61 664 707  
+            <br> <b>Bank account number:</b> 475260287/0100  
+            <br> <b>School founder:</b> Central Bohemian Region, Regional Authority, Zborovská 11, 150 21 Prague 5  
+            <br> <b>Form of education:</b> Daytime programme
+            <br> <b>School principal:</b> Mgr. Roman Hronek, <a href="mailto:hronek@gbn.cz">hronek@gbn.cz</a>  
+        </p>
+        <p>Gymnázium Benešov is a school with a 300-year tradition, providing secondary education with a final graduation exam in two study programs. The school's maximum number of students is 600. The education is general, but in the last two years of both study programs, students choose elective subjects (<a href="ProgramsAndSubjects.html">list</a> –at the bottom) to prepare for their final exams or university studies. Students are required to study two foreign languages: English as the first language and one  of four European languages–German, French,  Spanish, or Russian–as the second language.GBN is a Cambridge English Exam Preparation Centre and a partner school of IH Akcent. Gymnázium Benešov is also an organizer of subject-based competitions. Our school provides a variety of extracurricular activities,such as the Young Audience Club, the Young Listener Club, a robotics club, and others. Our school does not have its own canteen, but students can sign up for meals in nearby elementary school canteens, which are within walking distance. 
+                </p>
+            <footer class="footer2">
+                <p> <br><b>Contact Information</b>
+                    <br>Gymnázium, Benešov, Husova 470, 256 01 Benešov
+                    <br>Phone: 311444611, 311444612
+                    <br>E-mail: gymnazium@gbn.cz
+                    <br>Data box: 3bmx7xh
+                    <br>Account number: 475260287/0100
+                    <br>Student payment account: 115-3224780257/0100
+                    <br>Company ID (IČ): 61664707
+                    <br>Institution ID (IZO): 061664707
+                    <br>RED IZO: 600006671
+                </p>
+                    <hr>
+                  <p class="footer3"> All texts, photographs, and other graphic elements on this website are protected under copyright law and are the property of their respective owners and Pixabay. Please comply with copyright law when using the content of this website.
+                    <br>©  Gymnázium Benešov
+                </p>
+            </footer>
+        <script> 
+        document.addEventListener("DOMContentLoaded", function () {
+            let searchContainer = document.querySelector(".search-container");
+            let searchButton = document.querySelector(".search-button");
+            let searchInput = document.getElementById("search");
+
+        searchButton.addEventListener("click", function (event) {
+            event.stopPropagation(); 
+            searchContainer.classList.toggle("active");
+            searchInput.focus();
+    });
+
+        document.addEventListener("click", function (event) {
+        if (!searchContainer.contains(event.target) && event.target !== searchButton) {
+            searchContainer.classList.remove("active");
+        }
+    });
+
+        searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchFunction();
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelector(".nav-links");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const links = document.querySelectorAll(".nav-links a");
+    const currentUrl = window.location.pathname.split("/").pop();
+
+    
+    links.forEach(link => {
+        if (link.getAttribute("href") === currentUrl) {
+            link.classList.add("active");
+        }
+    });
+
+   
+    function toggleMenu() {
+        navLinks.classList.toggle("active");
+    }
+
+    menuToggle.addEventListener("click", function (event) {
+        toggleMenu();
+        event.stopPropagation(); 
+    });
+
+  
+    document.addEventListener("click", function (event) {
+        if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+            navLinks.classList.remove("active");
+        }
+    });
+});
+        </script>
+    </body>
+</html>
