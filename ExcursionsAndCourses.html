@@ -14,7 +14,21 @@
             padding: 0;
             overflow-x: hidden;
         }
-        
+         html, body {
+    overflow-x: hidden;
+    width: 100%;
+}   header h1 {
+    font-size: clamp(20px, 4vw, 40px); 
+    margin: 0 auto; 
+    text-align: center;
+    white-space: nowrap;
+    padding: 10px 0;
+}
+        @media screen and (max-width: 500px) {
+    header h1 {
+        padding: 15px 0; 
+    }
+}
         header {
             background: #6d4c41;
             color: white;
