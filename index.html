@@ -32,11 +32,17 @@
             padding: 15px;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
-        header h1 {
-    font-size: 2.5vw; /* Dynamická velikost podle šířky okna */
-    margin: 0;
+      header h1 {
+    font-size: clamp(20px, 4vw, 40px); /* Minimálně 20px, maximálně 40px */
+    margin: 0 auto; /* Centrovaný text */
     text-align: center;
     white-space: nowrap;
+    padding: 10px 0; /* Přidá mezery nahoře a dole */
+}
+        @media screen and (max-width: 500px) {
+    header h1 {
+        padding: 15px 0; /* Ještě větší mezera na mobilech */
+    }
 }
         .logo {
             position: absolute;
