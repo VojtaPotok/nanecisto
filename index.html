@@ -134,21 +134,32 @@
             object-fit: cover;
             background: none;
         }
-        .sections {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
-    
-        .section {
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            flex: 1 1 calc(33.333% - 20px);
-            max-width: calc(33.333% - 20px);
-            box-sizing: border-box;
-        }
+       .sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: stretch; /* Zajistí stejnou výšku všech sekcí */
+}
+
+.section {
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; 
+}
+
+.section h2 {
+    flex-grow: 0; 
+}
+
+.section p {
+    flex-grow: 1; 
+}
         
         footer {
             text-align: center;
@@ -237,9 +248,10 @@
                 display: block;
             }
             .section {
-            flex: 1 1 calc(50% - 20px);
-            max-width: calc(50% - 20px);
-        }
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
         }
         .footer2 p, hr {
             font-size: 75%;
@@ -250,13 +262,13 @@
         }
         @media screen and (max-width: 768px) {
         .sections {
-            flex-direction: column;
-            align-items: center;
-        }
-        .section {
-            flex: 1 1 100%;
-            max-width: 100%;
-        }
+        flex-direction: column;
+        align-items: center;
+    }
+    .section {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
     }
     </style>
 
