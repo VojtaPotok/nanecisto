@@ -14,7 +14,7 @@
             overflow-x: hidden;
         }
 
-        header {
+       header {
             background: #6d4c41;
             color: white;
             text-align: center;
@@ -27,15 +27,16 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            transition: top 0.3s ease;
-            height: 60px; /* Nastavení výšky */
+            transition: top 0.3s ease, height 0.3s ease; /* Přidán plynulý efekt na změnu výšky */
+            height: 80px; /* Představuje výchozí výšku headeru */
         }
 
-        .header-hidden {
-            transform: translateY(-100%);
+          .header-hidden {
+            transform: translateY(-100%); /* Skrytí headeru */
             opacity: 0;
+            height: 0; /* Snižuje výšku headeru na nulu při skrytí */
+            padding: 0; /* Smazání paddingu při skrytí */
         }
-
         header h1 {
             font-size: clamp(20px, 4vw, 40px);
             margin: 0;
@@ -55,7 +56,7 @@
 
         .navbar {
             position: fixed;
-            top: 70px;
+            top: 80px;
             left: 0;
             width: 100%;
             background: #8d6e63;
@@ -212,6 +213,7 @@
 
         .content {
             padding-top: 20px;
+              margin-top: 150px;
         }
 
         .flag {
@@ -328,7 +330,7 @@
         </div>
     </nav>
 
-        <hr>
+     <div class="content">
         <div class="banner">
             <img src="budova.jpg">
             
@@ -381,6 +383,7 @@
         </p>
     </footer>
 
+    </div>
 
         <script> 
     document.addEventListener("DOMContentLoaded", function () {
