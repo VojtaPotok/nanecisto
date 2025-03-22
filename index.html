@@ -5,36 +5,44 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gymnasium Benešov</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding-top: 60px;
-            color: #333;
-            padding: 0;
-            overflow-x: hidden;
-        }
+      body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding-top: 60px; /* Pokud chceš, aby obsah nezačínal přímo pod headerem */
+    color: #333;
+    padding: 0;
+    overflow-x: hidden;
+}
         html, body {
     overflow-x: hidden;
     width: 100%;
 }
-        header {
-            background: #6d4c41;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            width: 100%;
-            top: 0;
-            left: 0;
-            white-space: nowrap;
-            z-index: 1000;
-            padding: 15px;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        }
+       header {
+    background: #6d4c41;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed; /* Zajistí, že header bude fixovaný */
+    width: 100%;
+    top: 0; /* Začíná na vrchu */
+    left: 0;
+    white-space: nowrap;
+    z-index: 1000;
+    padding: 15px;
+    transition: top 0.3s ease-in-out; /* Plynulý pohyb pro skrytí/zobrazení */
+}
+        .header-hidden {
+    transform: translateY(-100%); /* Skrytí headeru */
+}
+
+/* Zajištění, aby obsah nezačínal pod navbar */
+body.scrolled .navbar {
+    top: 0;
+}
       header h1 {
     font-size: clamp(20px, 4vw, 40px); 
     margin: 0 auto; 
@@ -60,20 +68,22 @@
             height: 60px;
             max-height: 100px;
         }
-        .navbar {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #8d6e63;
-            padding: 10px ;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 999;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+       .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #8d6e63;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease; /* Plynulé skrývání navbaru při scrollování */
+}
+        
         .hidden {
             transform: translateY(-100%);
             opacity: 0;
@@ -367,31 +377,31 @@
 
 
         <script> 
-        document.addEventListener("DOMContentLoaded", function () {
-            let searchContainer = document.querySelector(".search-container");
-            let searchButton = document.querySelector(".search-button");
-            let searchInput = document.getElementById("search");
+       document.addEventListener("DOMContentLoaded", function () {
+    let searchContainer = document.querySelector(".search-container");
+    let searchButton = document.querySelector(".search-button");
+    let searchInput = document.getElementById("search");
 
-        searchButton.addEventListener("click", function (event) {
-            event.stopPropagation(); 
-            searchContainer.classList.toggle("active");
-            searchInput.focus();
+    searchButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        searchContainer.classList.toggle("active");
+        searchInput.focus();
     });
 
-        document.addEventListener("click", function (event) {
+    document.addEventListener("click", function (event) {
         if (!searchContainer.contains(event.target) && event.target !== searchButton) {
             searchContainer.classList.remove("active");
         }
     });
 
-        searchInput.addEventListener("keydown", function (event) {
+    searchInput.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
             event.preventDefault();
             searchFunction();
         }
     });
-});
-document.addEventListener("DOMContentLoaded", function () {
+
+    // Aktivní odkaz v navigaci podle aktuálního URL
     const navLinks = document.querySelectorAll(".nav-links a");
     let currentUrl = window.location.href;
 
@@ -426,13 +436,28 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = this.getAttribute('data-url');
         });
     });
-});
 
-            document.querySelectorAll('.section').forEach(section => {
-        section.addEventListener('click', function() {
-            window.location.href = this.getAttribute('data-url');
-        });
+    // Kód pro skrytí headeru při scrollování
+    let lastScrollTop = 0; // Počáteční pozice scrollu
+    const header = document.querySelector('header'); // Tmavý header
+    const navbar = document.querySelector('.navbar'); // Světlý navbar
+
+    // Při scrollování
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Pokud scrollujeme dolů a aktuální scroll je větší než poslední pozice
+        if (scrollTop > lastScrollTop) {
+            // Scroll dolů - skrytí headeru
+            header.classList.add('header-hidden');
+            navbar.style.top = '0'; // Ujistíme se, že navbar zůstane na vrchu
+        } else {
+            // Scroll nahoru - zobrazení headeru
+            header.classList.remove('header-hidden');
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Aby při scrollování nahoru byl scroll resetován na 0
     });
+});
         </script>
     </body>
 </html>
