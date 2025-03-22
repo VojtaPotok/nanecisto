@@ -38,11 +38,11 @@
         .header-hidden {
     transform: translateY(-100%); /* Skrytí headeru */
 }
-
-/* Zajištění, aby obsah nezačínal pod navbar */
-body.scrolled .navbar {
-    top: 0;
+header.header-hidden {
+    transform: translateY(-100%); /* Skrytí headeru */
+    opacity: 0; /* Skrytí headeru */
 }
+
       header h1 {
     font-size: clamp(20px, 4vw, 40px); 
     margin: 0 auto; 
@@ -81,13 +81,10 @@ body.scrolled .navbar {
     justify-content: space-between;
     z-index: 999;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: top 0.3s ease; /* Plynulé skrývání navbaru při scrollování */
+    transition: top 0.3s ease;
 }
         
-        .hidden {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
+
         .nav-links {
             list-style: none;
             padding: 0;
@@ -449,12 +446,14 @@ body.scrolled .navbar {
         // Pokud scrollujeme dolů a aktuální scroll je větší než poslední pozice
         if (scrollTop > lastScrollTop) {
             // Scroll dolů - skrytí headeru
-            header.classList.add('header-hidden');
-            navbar.style.top = '0'; // Ujistíme se, že navbar zůstane na vrchu
+            header.classList.add('header-hidden'); // Přidáme třídu pro skrytí headeru
+            navbar.style.top = '0'; // Zajistíme, že navbar zůstane na vrchu
         } else {
             // Scroll nahoru - zobrazení headeru
-            header.classList.remove('header-hidden');
+            header.classList.remove('header-hidden'); // Odstraníme třídu pro skrytí headeru
         }
+
+        // Uložení aktuální pozice scrollu
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Aby při scrollování nahoru byl scroll resetován na 0
     });
 });
