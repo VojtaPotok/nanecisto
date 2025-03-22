@@ -5,11 +5,10 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gymnasium Benešov</title>
     <style>
-      body {
+     body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding-top: 60px; /* Pokud chceš, aby obsah nezačínal přímo pod headerem */
     color: #333;
     padding: 0;
     overflow-x: hidden;
@@ -18,7 +17,7 @@
     overflow-x: hidden;
     width: 100%;
 }
-       header {
+     header {
     background: #6d4c41;
     color: white;
     text-align: center;
@@ -26,14 +25,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed; /* Zajistí, že header bude fixovaný */
+    position: fixed;
     width: 100%;
-    top: -80px; /* Nastavíme header mimo obrazovku při načítání */
+    top: 0;
     left: 0;
-    white-space: nowrap;
     z-index: 1000;
-    padding: 15px;
-    transition: top 0.3s ease-in-out; /* Plynulý pohyb pro skrytí/zobrazení */
+    transition: top 0.3s ease; /* Plynulý efekt pro změnu pozice */
 }
 
         .header-hidden {
@@ -57,6 +54,14 @@ body.scrolled .navbar {
     header h1 {
         padding: 15px 0; 
     }
+             header {
+        padding: 20px;
+    }
+
+    .nav-links {
+        padding: 10px 0;
+    }
+}
 }
         .logo {
             position: absolute;
@@ -71,9 +76,9 @@ body.scrolled .navbar {
             height: 60px;
             max-height: 100px;
         }
-      .navbar {
+     .navbar {
     position: fixed;
-    top: 0; /* Zajistíme, že navbar bude vždy nahoře */
+    top: 60px; /* Navbar bude pod headerem (pokud je výška headeru 60px) */
     left: 0;
     width: 100%;
     background: #8d6e63;
@@ -82,11 +87,14 @@ body.scrolled .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 999; /* Navbar bude pod headerem */
+    z-index: 999;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: top 0.3s ease; /* Plynulé skrývání navbaru při scrollování */
+    transition: top 0.3s ease;
 }
         
+.navbar.hidden {
+    top: 0; /* Navbar zůstane na vrchu při scrollování dolů */
+}
 
         .nav-links {
             list-style: none;
@@ -279,7 +287,28 @@ body.scrolled .navbar {
     .section {
         width: 80%; 
         margin-bottom: 20px;
-        
+    }
+            header {
+        padding: 15px;
+    }
+
+    .navbar {
+        top: 50px; /* Úprava výšky navbaru pro menší obrazovky */
+    }
+
+    .nav-links {
+        flex-direction: column; /* Změní odkazy na vertikální seznam */
+        gap: 10px;
+        position: absolute;
+        top: 60px; /* Odkazy začnou pod navbar */
+        left: 0;
+        width: 100%;
+        background: #8d6e63;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
     }
     }
     </style>
@@ -377,7 +406,7 @@ body.scrolled .navbar {
 
 
         <script> 
-       document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     let searchContainer = document.querySelector(".search-container");
     let searchButton = document.querySelector(".search-button");
     let searchInput = document.getElementById("search");
@@ -446,17 +475,16 @@ body.scrolled .navbar {
     window.addEventListener('scroll', function() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Pokud scrollujeme dolů a aktuální scroll je větší než poslední pozice
         if (scrollTop > lastScrollTop) {
-            // Scroll dolů - skrytí headeru
-            header.classList.add('header-hidden'); // Přidáme třídu pro skrytí headeru
-            navbar.style.top = '0'; // Zajistíme, že navbar zůstane na vrchu
+            // Scroll dolů - skrytí headeru a navbar se "přilepí" na vrch
+            header.style.top = "-60px"; // Skrytí headeru (pohyb nahoru)
+            navbar.classList.add('hidden'); // Navbar zůstane na vrchu
         } else {
-            // Scroll nahoru - zobrazení headeru
-            header.classList.remove('header-hidden'); // Odstraníme třídu pro skrytí headeru
+            // Scroll nahoru - zobrazení headeru a navbar se opět ukáže
+            header.style.top = "0"; // Zobrazení headeru
+            navbar.classList.remove('hidden'); // Zobrazení navbaru
         }
 
-        // Uložení aktuální pozice scrollu
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Aby při scrollování nahoru byl scroll resetován na 0
     });
 });
