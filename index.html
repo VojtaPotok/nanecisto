@@ -9,17 +9,20 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding-top: 60%;
+            padding-top: 60px;
             color: #333;
             padding: 0;
             overflow-x: hidden;
         }
-        
+        html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
         header {
             background: #6d4c41;
             color: white;
             text-align: center;
-            padding: 1%;
+            padding: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -29,9 +32,21 @@
             left: 0;
             white-space: nowrap;
             z-index: 1000;
-            padding: 2%;
+            padding: 15px;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
+      header h1 {
+    font-size: clamp(20px, 4vw, 40px); 
+    margin: 0 auto; 
+    text-align: center;
+    white-space: nowrap;
+    padding: 10px 0;
+}
+        @media screen and (max-width: 500px) {
+    header h1 {
+        padding: 15px 0; 
+    }
+}
         .logo {
             position: absolute;
             left: 5%;
@@ -51,7 +66,7 @@
             left: 0;
             width: 100%;
             background: #8d6e63;
-            padding: 1% ;
+            padding: 10px ;
             text-align: center;
             display: flex;
             align-items: center;
@@ -134,23 +149,26 @@
             object-fit: cover;
             background: none;
         }
-        .sections {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-        .section {
-            background: white;
-            padding: 20px;
-            width: 30%;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
+    .sections {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+.section {
+    background: white;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+        
         footer {
             text-align: center;
             background: #6d4c41;
             color: white;
             padding: 10px;
             margin-top: 20px;
+            
         }
         .banner {
             height: 300px;
@@ -170,6 +188,7 @@
         p {
             margin-left: 10%;
             margin-right: 10%;
+          font-size: large;
         }
         h2 {
             margin-left: 10%;
@@ -230,14 +249,29 @@
             .menu-toggle {
                 display: block;
             }
-        }
+}
         .footer1 {
             font-size: 75%;
-        }
+        }   
+        
         .footer3 {
             margin-left: 25%;
             margin-right: 25%;
-        }
+            font-size: 75%;
+        }   
+   
+        @media screen and (max-width: 768px) {
+          .sections {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section {
+        width: 80%; 
+        margin-bottom: 20px;
+        
+    }
+    }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -283,22 +317,23 @@
             <img src="budova.jpg">
             
         </div>
-        <div class="container">
-            <div class="sections">
-                <div class="section">
-                    <h2>Feelings of graduates</h2>
-                    <p>Short stories about our school.(<a href="FurtherInformation.html">Link</a>)</p>
-                </div>
-                <div class="section">
-                    <h2>Interesting past</h2>
-                    <p>History and notable alumni.(<a href="History.html">Link</a>)</p>
-                </div>
-                <div class="section">
-                    <h2>International programs</h2>
-                    <p>Partner schools and exchange program.(<a href="InternationalPrograms.html">Link</a>)</p>
-                </div>
-            </div>
+       <div class="container">
+    <div class="sections">
+        <div class="section" data-url="FurtherInformation.html">
+            <h2>Feelings of graduates</h2>
+            <p>Short stories about our school.</p>
         </div>
+        <div class="section" data-url="History.html">
+            <h2>Interesting past</h2>
+            <p>History and notable alumni.</p>
+        </div>
+        <div class="section" data-url="InternationalPrograms.html">
+            <h2>International programs</h2>
+            <p>Partner schools and exchange program.</p>
+        </div>
+    </div>
+</div>
+    
         <h2>Basic information</h2>
         <p>
             <br> <b>Name:</b> Gymnázium Benešov, a contributory organization of the Central Bohemian Region  
@@ -311,23 +346,26 @@
         </p>
         <p>Gymnázium Benešov is a school with a 300-year tradition, providing secondary education with a final graduation exam in two study programs. The school's maximum number of students is 600. The education is general, but in the last two years of both study programs, students choose elective subjects (<a href="ProgramsAndSubjects.html">list</a> –at the bottom) to prepare for their final exams or university studies. Students are required to study two foreign languages: English as the first language and one  of four European languages–German, French,  Spanish, or Russian–as the second language.GBN is a Cambridge English Exam Preparation Centre and a partner school of IH Akcent. Gymnázium Benešov is also an organizer of subject-based competitions. Our school provides a variety of extracurricular activities,such as the Young Audience Club, the Young Listener Club, a robotics club, and others. Our school does not have its own canteen, but students can sign up for meals in nearby elementary school canteens, which are within walking distance. 
                 </p>
-            <footer>
-                <p class="footer1"> <br><b>Contact Information</b>
-                    <br>Gymnázium, Benešov, Husova 470, 256 01 Benešov
-                    <br>Phone: 311444611, 311444612
-                    <br>E-mail: gymnazium@gbn.cz
-                    <br>Data box: 3bmx7xh
-                    <br>Account number: 475260287/0100
-                    <br>Student payment account: 115-3224780257/0100
-                    <br>Company ID (IČ): 61664707
-                    <br>Institution ID (IZO): 061664707
-                    <br>RED IZO: 600006671
-                </p>
-                    <hr>
-                  <p class="footer3"> All texts, photographs, and other graphic elements on this website are protected under copyright law and are the property of their respective owners and Pixabay. Please comply with copyright law when using the content of this website.
-                    <br>©  Gymnázium Benešov
-                </p>
-            </footer>
+        
+              <footer>
+        <p class="footer1"> <br><b>Contact Information</b>
+            <br>Gymnázium, Benešov, Husova 470, 256 01 Benešov
+            <br>Phone: 311444611, 311444612 (+420)
+            <br>E-mail: gymnazium@gbn.cz
+            <br>Data box: 3bmx7xh
+            <br>Account number: 475260287/0100
+            <br>Student payment account: 115-3224780257/0100
+            <br>Company ID (IČ): 61664707
+            <br>Institution ID (IZO): 061664707
+            <br>RED IZO: 600006671
+        </p>
+            <hr>
+          <p class="footer3"> All texts, photographs, and other graphic elements on this website are protected under copyright law and are the property of their respective owners and Pixabay. Please comply with copyright law when using the content of this website.
+            <br>©  Gymnázium Benešov
+        </p>
+    </footer>
+
+
         <script> 
         document.addEventListener("DOMContentLoaded", function () {
             let searchContainer = document.querySelector(".search-container");
@@ -359,15 +397,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const links = document.querySelectorAll(".nav-links a");
     const currentUrl = window.location.pathname.split("/").pop();
 
-    
     links.forEach(link => {
         if (link.getAttribute("href") === currentUrl) {
             link.classList.add("active");
         }
     });
 
+
    
-    function toggleMenu() {
+ function toggleMenu() {
         navLinks.classList.toggle("active");
     }
 
@@ -376,13 +414,18 @@ document.addEventListener("DOMContentLoaded", function () {
         event.stopPropagation(); 
     });
 
-  
     document.addEventListener("click", function (event) {
         if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
             navLinks.classList.remove("active");
         }
     });
 });
+
+            document.querySelectorAll('.section').forEach(section => {
+        section.addEventListener('click', function() {
+            window.location.href = this.getAttribute('data-url');
+        });
+    });
         </script>
     </body>
 </html>
